@@ -1,25 +1,65 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LiquidChat AI</title>
-<link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoqChat</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
-<div class="chat-container">
-    <h2>LiquidChat AI</h2>
-    <div id="chatLog" class="chat-log"></div>
+<body class="light">
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Мобильная боковая панель -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-header">
+            <div class="mobile-header-content">
+                <img class="mobile-logo" id="mobileLogo" src="/static/img/logo_d.png" alt="LoqChat">
+                <h3>Выберите нейросеть</h3>
+            </div>
+            <button class="close-sidebar" id="closeSidebar">×</button>
+        </div>
+        <div class="ai-list" id="mobileAiList">
+            <!-- AI items will be populated by JavaScript -->
+        </div>
+    </div>
 
-    <select id="modelSelect">
-        <option value="gpt">GPT</option>
-        <option value="mistral">Mistral</option>
-    </select>
+    <div class="container">
+        <!-- Боковая панель для ПК -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Выберите нейросеть</h3>
+            </div>
+            <div class="ai-list" id="desktopAiList">
+                <!-- AI items will be populated by JavaScript -->
+            </div>
+        </div>
 
-    <input id="userMsg" type="text" placeholder="Введите сообщение...">
-    <button onclick="sendMessage()">Отправить</button>
-</div>
+        <!-- Основной контент -->
+        <div class="main-content">
+            <header>
+                <div class="header-content">
+                    <img class="header-logo" id="headerLogo" src="/static/img/logo_d.png" alt="LoqChat">
+                    <span class="header-text">LoqChat</span>
+                </div>
+                <button id="themeToggle">🌙</button>
+            </header>
 
-<script src="/static/script.js"></script>
+            <section id="chat-section">
+                <div id="chatOutput" class="chat-output"></div>
+                <div class="swipe-hint" id="swipeHint">
+                    ← Свайп для выбора ИИ
+                </div>
+            </section>
+
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input type="text" id="messageInput" placeholder="Напишите сообщение...">
+                    <button id="sendBtn">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
 </body>
 </html>

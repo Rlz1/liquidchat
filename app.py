@@ -7,16 +7,13 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/chat", methods=["POST"])
-def chat():
+@app.route("/ask", methods=["POST"])
+def ask():
     data = request.json
+    model_key = data.get("model")
     message = data.get("message")
-    model = data.get("model", "gpt")  # по умолчанию GPT
-
-    reply = ask_model(model, message)
-    return jsonify({"reply": reply})
+    answer = ask_model(model_key, message)
+    return jsonify({"answer": answer})
 
 if __name__ == "__main__":
-    import os
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=True)
